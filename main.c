@@ -27,9 +27,8 @@ void app_main() {
       gpio_set_direction(2,GPIO_MODE_OUTPUT);
      pisca_ponto();
      pisca_ponto();
-     pisca_ponto():
+     pisca_ponto();
      
-
      pisca_traco();
      pisca_traco();
      pisca_traco();
