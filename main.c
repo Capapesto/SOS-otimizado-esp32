@@ -3,39 +3,32 @@
 #include "freertos/task.h"
 #include "driver/gpio.h"
 
-void pisca_ponto(){
-     gpio_set_level(2,1);
-     printf(".");
-     vTaskDelay(300 / portTICK_PERIOD_MS);
-     gpio_set_level(2,0);
-     vTaskDelay(300 / portTICK_PERIOD_MS);
-}
-
-void pisca_traco(){
-     gpio_set_level(2,1);
-     printf("-");
-     vTaskDelay(700 / portTICK_PERIOD_MS);
-     gpio_set_level(2,0);
-     vTaskDelay(500 / portTICK_PERIOD_MS);
-}
-
-void app_main() {
-  gpio_set_direction(2,GPIO_MODE_OUTPUT);
+void pisca_led(int tempo, int vezes, int pino){
+ gpio_set_direction(pino, GPIO_MODE_OUTPUT);   
+    for (int i = 0; i < vezes; i++)
+    {
+         gpio_set_level(pino,1);
+     vTaskDelay(tempo / portTICK_PERIOD_MS);
+     gpio_set_level(pino,0);
+     vTaskDelay(200 / portTICK_PERIOD_MS);
+      
   
-  //mensagem
+}
+    }
+void S(){
+     pisca_led(100, 3, 23);
+}
+void O(){
+     pisca_led(500, 3, 5);
+}
+void app_main() {
+ 
   while (true) {
-      gpio_set_direction(2,GPIO_MODE_OUTPUT);
-     pisca_ponto();
-     pisca_ponto();
-     pisca_ponto();
-     
-     pisca_traco();
-     pisca_traco();
-     pisca_traco();
-
-     pisca_ponto();
-     pisca_ponto();
-     pisca_ponto();
+    S();
+    O();
+    S();
      vTaskDelay(2000 / portTICK_PERIOD_MS);
   }
+ 
+  
 }
